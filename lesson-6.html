@@ -9,20 +9,27 @@
   <body>
     <script>
       /*
-      Task - 3
-      Bob is working as a bus driver. However, he has become extremely popular amongst the city's residents. With so many passengers wanting to get aboard his bus, he sometimes has to face the problem of not enough space left on the bus! He wants you to write a simple program telling him if he will be able to fit all the passengers.
-      Task Overview:
-      You have to write a function that accepts three parameters:
-
-      cap is the amount of people the bus can hold excluding the driver.
-      on is the number of people on the bus.
-      wait is the number of people waiting to get on to the bus.
-      If there is enough space, return 0, and if there isn't, return the number of passengers he can't take.
-      */
-
-      function enough(cap, on, wait) {
-        return cap >= on + wait ? 0 : -(cap - (on + wait));
+      Write a function that accepts an array of 10 integers (between 0 and 9), that returns a string of those numbers in the form of a phone number.
+        */
+      function createPhoneNumber(numbers) {
+        return;
+        "(" +
+          numbers[0] +
+          numbers[1] +
+          numbers[2] +
+          ")" +
+          " " +
+          numbers[3] +
+          numbers[4] +
+          numbers[5] +
+          "-" +
+          numbers[6] +
+          numbers[7] +
+          numbers[8] +
+          numbers[9];
       }
+
+      createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
     </script>
   </body>
 </html>
