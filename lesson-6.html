@@ -9,23 +9,23 @@
   <body>
     <script>
       /*
-      The function takes in 2 inputs x and y, and should return x to the power of y
+      Americans are odd people: in their buildings, the first floor is actually the ground floor and there is no 13th floor ('cause of superstition).
 
-Simple, right? But you're NOT allowed to use Math.pow();
-
-Obs: x and y will be naturals, so DON'T take fractions into consideration;
-
-Note : zero to the power of zero equals one in this kata
+Write a function that given an American floor (passed as an integer) returns the real floor.
+Moreover, your function should work for basement floors too: just return the same value as the passed one.
         */
-      function power(x, y) {
-        if (y == 0) {
-          return 1;
+      function getRealFloor(flor) {
+        if (flor == 0) {
+          return 0;
+        } else if (flor >= 14) {
+          return flor - 2;
+        } else if (flor < 13 && flor > 0) {
+          return flor - 1;
+        } else if (flor == 13) {
+          alert("There is no 13 floor in America");
+          return false;
         } else {
-          if (y != 1) {
-            return x * power(x, y - 1);
-          } else {
-            return x;
-          }
+          return flor;
         }
       }
     </script>
