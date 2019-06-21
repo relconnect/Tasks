@@ -8,26 +8,28 @@
   </head>
   <body>
     <script>
-      /*
-      Americans are odd people: in their buildings, the first floor is actually the ground floor and there is no 13th floor ('cause of superstition).
+      /*The first century spans from the year 1 up to and including the year 100, The second - from the year 101 up to and including the year 200, etc.*/
+      function century(year) {
+        if (year < 100) return 1;
 
-Write a function that given an American floor (passed as an integer) returns the real floor.
-Moreover, your function should work for basement floors too: just return the same value as the passed one.
-        */
-      function getRealFloor(flor) {
-        if (flor == 0) {
-          return 0;
-        } else if (flor >= 14) {
-          return flor - 2;
-        } else if (flor < 13 && flor > 0) {
-          return flor - 1;
-        } else if (flor == 13) {
-          alert("There is no 13 floor in America");
-          return false;
-        } else {
-          return flor;
-        }
+        return Math.ceil(year / 100);
       }
+
+      /*
+      Return a new array consisting of elements which are multiple of their own index in input array (length > 1).*/
+
+      function multipleOfIndex(array) {
+        let newArr = array.filter((item, index) => item % index == 0);
+        return newArr;
+      }
+      console.log(multipleOfIndex([22, -6, 32, 82, 9, 25]));
+
+      /*Simple, remove the spaces from the string, then return the resultant string.*/
+      function noSpace(x) {
+        let arr = x.split("");
+        return (arr2 = arr.filter(item => item != " ").join(""));
+      }
+      noSpace("8 j 8   mBliB8g  imjB8B8  jl  B");
     </script>
   </body>
 </html>
