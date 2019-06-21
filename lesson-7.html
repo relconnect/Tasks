@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*The first century spans from the year 1 up to and including the year 100, The second - from the year 101 up to and including the year 200, etc.*/
+      function century(year) {
+        if (year < 100) return 1;
+
+        return Math.ceil(year / 100);
+      }
+
+      /*
+        Return a new array consisting of elements which are multiple of their own index in input array (length > 1).*/
+
+      function multipleOfIndex(array) {
+        let newArr = array.filter((item, index) => item % index == 0);
+        return newArr;
+      }
+      console.log(multipleOfIndex([22, -6, 32, 82, 9, 25]));
+
+      /*Simple, remove the spaces from the string, then return the resultant string.*/
+      function noSpace(x) {
+        let arr = x.split("");
+        return (arr2 = arr.filter(item => item != " ").join(""));
+      }
+      noSpace("8 j 8   mBliB8g  imjB8B8  jl  B");
+    </script>
+  </body>
+</html>
