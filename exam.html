@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+                     (10 баллов) Написать ф-цию, которая будет может вызываться неограниченное
+                     количество раз в виде multipleSum(1)(2)(3)(4)(5)() // 15
+                      */
+      function multipleSum(x) {
+        var currentSum = x;
+
+        function sum(y) {
+          currentSum += y;
+          return sum;
+        }
+
+        sum.toString = function() {
+          return currentSum;
+        };
+
+        return sum;
+      }
+
+      console.log(multipleSum(1)(2)(3)(4)(5));
+
+      /*2.(10 баллов ) Написать ф-цию проверки на монотонность
+      [1, 2, 3] - true
+      [1, 1, 2] - true
+      [1, 1, 1] - true
+      [3, 2, 1] - true
+      [2, 2, 1] - true
+      [1, 1, 1, 2] - true
+      [1, 2, 1, 2] - false
+      [1, 2, 1] - false*/
+
+      console.log(
+        [1, 2, 1, 2].every((value, index, array) => {
+          if (index) {
+            return value > array[index - 1];
+          } else {
+            return true;
+          }
+        })
+      );
+
+      /*
+                  3.(20 баллов) написать ф-цию, которая отсортирует массив в порядке
+            Приоритеты продуктов такие:
+            1 READY
+            1.1   origin=BANK
+            1.2   origin=CLIENT
+            2 IN PROGRESS / IN PROGRESS2
+            3 SCORING
+            4 REJECTED
+            5 NEW
+            6 ACTIVE
+            let products = [
+                {id: 'overdraft', status: 'ACTIVATED'},
+                {id: 'overdraft', status: 'READY', origin:'CLIENT'},
+                {id: 'creditLine', status: 'READY', origin:'CLIENT'},
+                {id: 'overdraft', status: 'REJECTED'},
+                {id: 'turnover', status: 'ACTIVATED'},
+                {id: 'overdraft', status: 'READY', origin:'BANK'},
+                {id: 'turnover', status: 'NEW'},
+                {id: 'turnover', status: 'IN PROGRESS'},
+                {id: 'creditLine', status: 'ACTIVATED'},
+                {id: 'creditLine', status: 'ACTIVE'},
+                {id: 'turnover', status: 'READY', origin:'BANK'},
+                {id: 'creditLine', status: 'IN PROGRESS2'},
+                {id: 'creditLine', status: 'SCORING'}
+                ];
+                */
+      let products = [
+        { id: "overdraft", status: "ACTIVATED" },
+        { id: "overdraft", status: "READY", origin: "CLIENT" },
+        { id: "creditLine", status: "READY", origin: "CLIENT" },
+        { id: "overdraft", status: "REJECTED" },
+        { id: "turnover", status: "ACTIVATED" },
+        { id: "overdraft", status: "READY", origin: "BANK" },
+        { id: "turnover", status: "NEW" },
+        { id: "turnover", status: "IN PROGRESS" },
+        { id: "creditLine", status: "ACTIVATED" },
+        { id: "creditLine", status: "ACTIVE" },
+        { id: "turnover", status: "READY", origin: "BANK" },
+        { id: "creditLine", status: "IN PROGRESS2" },
+        { id: "creditLine", status: "SCORING" }
+      ];
+
+      let sortArray = function(arr) {};
+    </script>
+  </body>
+</html>
