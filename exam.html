@@ -40,9 +40,9 @@
       [1, 2, 1] - false*/
 
       console.log(
-        [1, 2, 1, 2].every((value, index, array) => {
+        [3, 2, 1].every((value, index, array) => {
           if (index) {
-            return value > array[index - 1];
+            return value >= array[index - 1];
           } else {
             return true;
           }
@@ -92,7 +92,7 @@
         { id: "creditLine", status: "SCORING" }
       ];
 
-      let sortArray = function(arr) {};
+      //   let sortArray = function(arr) {};
     </script>
   </body>
 </html>

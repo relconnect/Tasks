@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // №1. Промисифицировать ф-цию из библиотеки FS
+      fs.readFile(filename, (err, data) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(data);
+        }
+      });
+
+      function readFile(filename) {
+        return new Promise(function(resolve, reject) {
+          fs.readFile(filename, (err, data) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(data);
+            }
+          });
+        });
+      }
+
+      readFile(filename)
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+
+      // 2. Напишите функцию, принимающую на вход строку, и возвращающую первый символ, который встречается в строке только один раз.
+      // Если это буква, то она должна быть в том регистре, в котором она встретилась в строке. Например, для строки mAmaN вернуть N.
+      // Если все символы встречаются больше одного раза, вернуть пустую строку.
+      function firstNonRepeatingLetter(str) {
+        for (let i = 0; i < str.length; i++) {
+          let j = str.charAt(i);
+          if (str.indexOf(j) == str.lastIndexOf(j)) {
+            return j;
+          }
+        }
+        return "";
+      }
+
+      //№3 Напишите код функции sum, количество слагаемых не ограничено
+      function multipleSum(x) {
+        var currentSum = x;
+
+        function sum(y) {
+          currentSum += y;
+          return sum;
+        }
+
+        sum.toString = function() {
+          return currentSum;
+        };
+
+        return sum;
+      }
+
+      console.log(multipleSum(1)(2)(3)(4)(5));
+
+      // №4. Напишите код функции reverse (без использования строк, массивов, циклов). На вход только по порядку.
+      function reverce(num) {
+        num = num + "";
+        return num
+          .split("")
+          .reverse()
+          .join("");
+      }
+      console.log(reverce(1234));
+    </script>
+  </body>
+</html>
