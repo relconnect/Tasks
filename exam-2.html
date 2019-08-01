@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //       10 баллов
+      //   Реализуйте функцию removeProperty, которая принимает объек и имя свойства
+      //   и выполняет следующие действия:
+      //   Если объект obj имеет свойство prop, функция удаляет свойство из объекта и возвращает
+      //   true; во всех остальных случаях возвращается false.
+      function removeProperty(obj, prop) {
+        let result = false;
+        for (var objectProp in obj) {
+          console.log(objectProp);
+          if (objectProp == prop) {
+            delete obj[objectProp];
+            result = true;
+          }
+        }
+        return result;
+      }
+      let x = { a: 1, b: 2 };
+      console.log(removeProperty(x, "a"));
+      console.log(x);
+
+      //----------------------------------------
+
+      //         10 баллов
+      //   Напишите функцию, которая преобразует введенную пользователем дату в формате MM/DD/YYYY в формат, необходимый для API (YYYYMMDD). Параметр «userDate» и возвращаемое значение являются строками.
+      //   Например, следует преобразовать введенную пользователем дату «31.12.2014» в «20141231», подходящую для API.
+      function formatDate(userDate) {
+        // format from M/D/YYYY to YYYYMMDD
+        let date = new Date(userDate);
+        let result = "";
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+
+        return `${year}${month}${day}`;
+      }
+      console.log(formatDate("12/31/2014"));
+
+      //------------------------------------
+      //       класс Worker будет работать так:
+      // let worker = new Worker('Имя', 'Фамилия', 10, 31);
+      // console.log(worker.getRate()); //выведет 10
+      // console.log(worker.getDays()); //выведет 31
+      // console.log(worker.getSalary()); //выведет 310 - то есть 10*31
+      // worker.setRate(20); //увеличим ставку
+      // worker.setDays(10); //уменьшим дни
+      // console.log(worker.getSalary()); //выведет 200 - то есть 20*10
+      // класс PreciousWorker наследует у Worker будет работать так:
+      // let preciousWorker = new PreciousWorker('Имя', 'Фамилия', 10, 31, 5);
+      // console.log(worker.getRate()); //выведет 10
+      // console.log(worker.getDays()); //выведет 31
+      // console.log(worker.getSalary()); //выведет 1550 - то есть 10*31*5
+      // worker.setRate(20); //увеличим ставку
+      // worker.setDays(10); //уменьшим дни
+      // console.log(worker.getSalary()); //выведет 1000 - то есть 20*10*5
+
+      function Worker(firstName, secondName, rate, days) {
+        this.workerRate = rate;
+        this.workerDays = days;
+        this.workerFirstName = firstName;
+        this.workerSecondName = secondName;
+        this.getRate = function() {
+          return this.workerRate;
+        };
+        this.getDays = function() {
+          return this.workerDays;
+        };
+
+        this.getSalary = function() {
+          return this.workerRate * this.workerDays;
+        };
+
+        this.setRate = function(newRate) {
+          this.workerRate = newRate;
+        };
+        this.setDays = function(newDate) {
+          this.workerDays = newDate;
+        };
+      }
+      let worker = new Worker("Имя", "Фамилия", 10, 31);
+      console.log(worker.getRate()); //выведет 10
+      console.log(worker.getDays()); //выведет 31
+      console.log(worker.getSalary()); //выведет 310 - то есть 10*31
+      worker.setRate(20); //увеличим ставку
+      worker.setDays(10); //уменьшим дни
+      console.log(worker.getSalary()); //выведет 200 - то есть 20*10
+
+      function PreciousWorker(firstName, secondName, rate, days, num) {
+        Worker.apply(this, arguments);
+        this.num = num;
+
+        this.getSalary = function() {
+          return this.workerRate * this.workerDays * this.num;
+        };
+      }
+      let preciousWorker = new PreciousWorker("Имя", "Фамилия", 10, 31, 5);
+      console.log(preciousWorker.getRate()); //выведет 10
+      console.log(preciousWorker.getDays()); //выведет 31
+      console.log(preciousWorker.getSalary()); //выведет 1550 - то есть 10*31*5
+      preciousWorker.setRate(20); //увеличим ставку
+      preciousWorker.setDays(10); //уменьшим дни
+      console.log(preciousWorker.getSalary()); //выведет 1000 - то есть 20*10*5
+
+      //----------------------
+      //       ДОП
+      //   isBalanced("}{"); // false
+      //   isBalanced("{{}"); // false
+      //   isBalanced("{}{}"); // true
+      //   isBalanced("foo { bar { baz } boo }"); // true
+      //   isBalanced("foo { bar { baz }"); // false
+      //   isBalanced("foo { bar } }"); // false
+
+      function isBalanced(str) {
+        let arr = str.split("").filter(elem => {
+          if (elem === "{" || elem === "}") {
+            return elem;
+          }
+        });
+        let sumLeft = arr.filter(elem => elem === "{");
+        let sumRight = arr.filter(elem => elem === "}");
+
+        if (sumLeft.length === sumRight.length) {
+          return true;
+        }
+        return false;
+      }
+      console.log(isBalanced("}{")); // false
+      console.log(isBalanced("{{}")); // false
+      console.log(isBalanced("{}{}")); // true
+      console.log(isBalanced("foo { bar { baz } boo }")); // true
+      console.log(isBalanced("foo { bar { baz }")); // false
+      console.log(isBalanced("foo { bar } }")); // false
+
+      //-----------------------------------
+    </script>
+  </body>
+</html>
